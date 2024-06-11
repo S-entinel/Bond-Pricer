@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "dgSpecHash": "fV9qoQIdftM=",
+  "success": true,
+  "projectFilePath": "/Users/suvobaidya/BondPricer2/BondPricer2.csproj",
+  "expectedPackageFiles": [
+    "/Users/suvobaidya/.nuget/packages/bouncycastle.cryptography/2.3.1/bouncycastle.cryptography.2.3.1.nupkg.sha512",
+    "/Users/suvobaidya/.nuget/packages/itextsharp.lgplv2.core/3.4.20/itextsharp.lgplv2.core.3.4.20.nupkg.sha512",
+    "/Users/suvobaidya/.nuget/packages/oxyplot.core/2.1.2/oxyplot.core.2.1.2.nupkg.sha512",
+    "/Users/suvobaidya/.nuget/packages/oxyplot.windowsforms/2.1.2/oxyplot.windowsforms.2.1.2.nupkg.sha512",
+    "/Users/suvobaidya/.nuget/packages/skiasharp/2.88.8/skiasharp.2.88.8.nupkg.sha512",
+    "/Users/suvobaidya/.nuget/packages/skiasharp.nativeassets.macos/2.88.8/skiasharp.nativeassets.macos.2.88.8.nupkg.sha512",
+    "/Users/suvobaidya/.nuget/packages/skiasharp.nativeassets.win32/2.88.8/skiasharp.nativeassets.win32.2.88.8.nupkg.sha512",
+    "/Users/suvobaidya/.nuget/packages/system.text.encoding.codepages/8.0.0/system.text.encoding.codepages.8.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
