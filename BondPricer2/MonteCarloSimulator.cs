@@ -35,7 +35,6 @@ public class MonteCarloSimulator
     private static double SimulateBondPrice(Bond bond, bool antithetic = false)
     {
         double pv = 0.0;
-        bool defaulted = false;
 
         switch (bond.Type)
         {
@@ -80,9 +79,12 @@ public class MonteCarloSimulator
 
     private static double SimulateZeroCouponBond(Bond bond, bool antithetic)
     {
-        if (rand.NextDouble() < bond.DefaultProbability)
+        lock (lockObject)
         {
-            return 0.0;
+            if (rand.NextDouble() < bond.DefaultProbability)
+            {
+                return 0.0;
+            }
         }
 
         double rate = antithetic ? 1.0 - rand.NextDouble() : rand.NextDouble();
@@ -117,7 +119,7 @@ public class MonteCarloSimulator
     {
         double pv = SimulateRegularBond(bond, antithetic);
         double stockPrice = GetStockPriceAtMaturity(bond.Maturity, antithetic);
-        double conversionValue = stockPrice * GetConversionRatio();
+        double conversionValue = stockPrice * GetConversionRatio(bond);
 
         return Math.Max(pv, conversionValue);
     }
@@ -125,13 +127,21 @@ public class MonteCarloSimulator
     private static double GetStockPriceAtMaturity(int maturity, bool antithetic)
     {
         double rate = antithetic ? 1.0 - rand.NextDouble() : rand.NextDouble();
-        // Placeholder: Implement a method to simulate or retrieve the stock price at bond maturity
-        return 100.0 + rate * 10.0;
+        
+        // Simulate stock price at maturity using a simple geometric Brownian motion model.
+        double initialStockPrice = 100.0;
+        double drift = 0.05; // Expected return
+        double volatility = 0.2; // Stock price volatility
+        double time = maturity;
+
+        double stockPrice = initialStockPrice * Math.Exp((drift - 0.5 * volatility * volatility) * time + volatility * Math.Sqrt(time) * rate);
+        return stockPrice;
     }
 
-    private static double GetConversionRatio()
+    private static double GetConversionRatio(Bond bond)
     {
-        // Placeholder: Implement logic to return the conversion ratio for convertible bonds
-        return 1.0;
+        // Assuming a fixed conversion ratio for simplicity.
+        return 10.0; // Example: each bond can be converted into 10 shares of stock
     }
 }
+
